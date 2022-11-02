@@ -21,4 +21,8 @@
   .bannerBtn {
     @apply flex items-center gap-x-2 rounded px-5 py-1.5 text-sm font-semibold transition hover:opacity-75 md:py-2.5 md:px-8 md:text-xl;
   }
+
+  .rowChevron {
+    @apply absolute top-0 bottom-0 z-40 m-auto transition opacity-0 cursor-pointer h-9 w-9 hover:scale-125 group-hover:opacity-100;
+  }
 }
