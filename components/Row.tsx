@@ -2,6 +2,7 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
 import { Movie } from "../typing";
+import Thumbnail from "./Thumbnail";
 
 type Props = { title: string; movies: Movie[] };
 
@@ -33,6 +34,14 @@ export default function Row({ title, movies }: Props) {
           onClick={() => handleClick("left")}
         />
 
+        <div
+          ref={rowRef}
+          className="flex items-center scrollbar-hide space-x-0.5 overflow-x-scroll md:space-x-2.5 md:p-2"
+        >
+          {movies.map((movie) => (
+            <Thumbnail key={movie?.id} movie={movie} />
+          ))}
+        </div>
         <ChevronRightIcon
           className="rowChevron right-2"
           onClick={() => handleClick("right")}
