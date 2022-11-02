@@ -2,9 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* default html tags */
 @layer base {
   body {
-    @apply bg-[#141414] text-white;
+    @apply bg-[#141414] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-red-600;
   }
 
   header {
@@ -26,16 +27,16 @@
     @apply absolute top-0 bottom-0 z-40 m-auto transition opacity-0 cursor-pointer h-9 w-9 hover:scale-125 group-hover:opacity-100;
   }
 
-  .modalBtn {
-    @apply flex items-center h-11 w-11 justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10;
-  }
-
   .input {
     @apply w-full rounded bg-[#333] px-5 py-3.5  placeholder-[gray] outline-none focus:bg-[#454545];
   }
 
   .loginValidation {
     @apply p-1 text-[13px] font-light text-orange-500;
+  }
+
+  .modalBtn {
+    @apply flex items-center h-11 w-11 justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition hover:border-white hover:bg-white/10;
   }
 
   .planList {
