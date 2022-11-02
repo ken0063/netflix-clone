@@ -8,7 +8,7 @@ import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Modals from "../components/Modals";
 import Row from "../components/Row";
-
+import useAuth from "../hooks/useAuth";
 import { Movie } from "../typing";
 import requests from "../utils/requests";
 
@@ -34,7 +34,11 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
+  const { loading } = useAuth();
   const showModal = useRecoilValue(modalState);
+  const subscription = false;
+
+  if (loading || subscription === null) return null;
 
   return (
     <div
@@ -59,8 +63,8 @@ const Home = ({
           <Row title="Romance Movies" movies={romanceMovies} />
           <Row title="Documentaries" movies={documentaries} />
         </section>
-        {showModal && <Modals />}
       </main>
+      {showModal && <Modals />}
     </div>
   );
 };
