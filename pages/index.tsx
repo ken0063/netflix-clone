@@ -1,9 +1,14 @@
-import { GetServerSideProps } from "next";
+import { Product } from "@stripe/firestore-stripe-payments";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import Banner from "../components/Banner";
+import { useRecoilValue } from "recoil";
+import { modalState } from "../atom/modalAtom";
 
+import Banner from "../components/Banner";
 import Header from "../components/Header";
+import Modals from "../components/Modals";
 import Row from "../components/Row";
+
 import { Movie } from "../typing";
 import requests from "../utils/requests";
 
@@ -16,6 +21,7 @@ interface Props {
   romanceMovies: Movie[];
   topRated: Movie[];
   trendingNow: Movie[];
+  products: Product[];
 }
 
 const Home = ({
@@ -28,9 +34,12 @@ const Home = ({
   topRated,
   trendingNow,
 }: Props) => {
+  const showModal = useRecoilValue(modalState);
+
   return (
     <div
-      className={`relative h-screen bg-gradient-to-b lg:h-[140vh]"
+      className={`relative h-screen bg-gradient-to-b lg:h-[140vh] ${
+        showModal && "!h-screen overflow-hidden"
       }`}
     >
       <Head>
@@ -38,7 +47,6 @@ const Home = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-
       <main className="relative pb-2 pl-4 lg:space-y-24 lg:pl-16">
         <Banner netflixOriginals={netflixOriginals} />
         <section className=" md:space-y-24">
@@ -51,6 +59,7 @@ const Home = ({
           <Row title="Romance Movies" movies={romanceMovies} />
           <Row title="Documentaries" movies={documentaries} />
         </section>
+        {showModal && <Modals />}
       </main>
     </div>
   );
