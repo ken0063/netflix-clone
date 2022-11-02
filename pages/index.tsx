@@ -7,6 +7,7 @@ import { modalState } from "../atom/modalAtom";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Modals from "../components/Modals";
+import Plans from "../components/Plans";
 import Row from "../components/Row";
 import useAuth from "../hooks/useAuth";
 import { Movie } from "../typing";
@@ -39,6 +40,7 @@ const Home = ({
   const subscription = false;
 
   if (loading || subscription === null) return null;
+  if (!subscription) return <Plans />;
 
   return (
     <div
