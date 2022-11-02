@@ -1,10 +1,12 @@
 import { MagnifyingGlassIcon, BellIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
+  const { logout } = useAuth();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -47,6 +49,7 @@ function Header() {
         <img
           src="https://rb.gy/g1pwyx"
           alt=""
+          onClick={logout}
           className="rounded cursor-pointer"
         />
         {/* </Link> */}
